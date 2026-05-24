@@ -2,7 +2,8 @@
     "name": "Framework",
     "rootNamespace": "GameFramework",
     "references": [
-        "VContainer"
+        "VContainer",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
