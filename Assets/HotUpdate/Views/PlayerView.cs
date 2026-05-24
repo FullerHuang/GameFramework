@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 using VContainer.Unity;
 using GameFramework;
 
@@ -25,7 +26,7 @@ namespace HotUpdate
             {
                 builder.RegisterInstance<IPlayerView>(this);
             });
-            _presenter = _subScope.Resolve<PlayerPresenter>();
+            _presenter = _subScope.Container.Resolve<PlayerPresenter>();
             _presenter.Initialize();
 
             _levelUpButton?.onClick.AddListener(() => OnLevelUpClicked?.Invoke());
