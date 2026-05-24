@@ -1,0 +1,17 @@
+{
+    "name": "HotUpdate",
+    "rootNamespace": "HotUpdate",
+    "references": [
+        "Framework",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
