@@ -16,15 +16,11 @@ namespace HotUpdate
 
         public override void Initialize()
         {
-            AddDisposable(_model.Gold.Subscribe(v => View.UpdateGold(v)));
-            AddDisposable(_model.Level.Subscribe(v => View.UpdateLevel(v)));
-            AddDisposable(_model.Name.Subscribe(v => View.UpdateName(v)));
+            AddDisposable(_model.Gold.SubscribeAndRefresh(v => View.UpdateGold(v)));
+            AddDisposable(_model.Level.SubscribeAndRefresh(v => View.UpdateLevel(v)));
+            AddDisposable(_model.Name.SubscribeAndRefresh(v => View.UpdateName(v)));
 
             View.OnLevelUpClicked += HandleLevelUp;
-
-            View.UpdateGold(_model.Gold.Value);
-            View.UpdateLevel(_model.Level.Value);
-            View.UpdateName(_model.Name.Value);
         }
 
         public override void Dispose()
