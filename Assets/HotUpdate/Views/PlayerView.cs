@@ -9,6 +9,7 @@ namespace HotUpdate
 {
     public class PlayerView : MonoBehaviour, IPlayerView
     {
+        [SerializeField] string _playerId = "Player1";
         [SerializeField] Text _goldText;
         [SerializeField] Text _levelText;
         [SerializeField] Text _nameText;
@@ -25,6 +26,7 @@ namespace HotUpdate
             _subScope = parentScope.CreateChild(builder =>
             {
                 builder.RegisterInstance<IPlayerView>(this);
+                builder.RegisterInstance(_playerId);
             });
             _presenter = _subScope.Container.Resolve<PlayerPresenter>();
             _presenter.Initialize();

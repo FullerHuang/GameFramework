@@ -4,18 +4,21 @@ namespace HotUpdate
 {
     public class PlayerPresenter : Presenter<IPlayerView>
     {
-        readonly PlayerModel _model;
         readonly IPlayerService _service;
+        readonly string _playerId;
+        PlayerModel _model;
 
-        public PlayerPresenter(IPlayerView view, PlayerModel model, IPlayerService service)
+        public PlayerPresenter(IPlayerView view, string playerId, IPlayerService service)
             : base(view)
         {
-            _model = model;
             _service = service;
+            _playerId = playerId;
         }
 
         public override void Initialize()
         {
+            _model = _service.GetOrCreate(_playerId);
+
             AddDisposable(_model.Gold.SubscribeAndRefresh(v => View.UpdateGold(v)));
             AddDisposable(_model.Level.SubscribeAndRefresh(v => View.UpdateLevel(v)));
             AddDisposable(_model.Name.SubscribeAndRefresh(v => View.UpdateName(v)));
@@ -26,7 +29,7 @@ namespace HotUpdate
         public override void Dispose()
         {
             View.OnLevelUpClicked -= HandleLevelUp;
-            _service.SavePlayerData();
+            _service.SaveAllPlayers();
             base.Dispose();
         }
 
